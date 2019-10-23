@@ -166,11 +166,11 @@ if [ -d "1" ]; then
 	grep '    cells:' logs/$runnr/scM1_$runnr.log | tee -a $session_log
 	echo " "
 else 
-	echo -e "***\nDirectory 1 not found!\n" | tee -a $session_log
+	echo -e "*****\nDirectory 1 not found!\n" | tee -a $session_log
 fi
 
 if [ -d "2" ]; then
-	echo -e "**\nchecking snapping phase in mesh generation...\n		"  | tee -a $session_log
+	echo -e "*****\nchecking snapping phase in mesh generation...\n		"  | tee -a $session_log
 	{ time checkMesh -allGeometry -allTopology -time 2 > logs/$runnr/scM2_$runnr.log ; } 2>&1 | tee -a $session_log || error_exit "checkMesh on Time 2 did not complete! Aborting\n" | tee -a $session_log
 	check_result "scM2"	
 else 
@@ -178,9 +178,9 @@ else
 fi
 
 if [ -d "3" ]; then
-	echo -e "*\nchecking layer phase in mesh generation...\n" | tee -a $session_log
+	echo -e "*****\nchecking layer phase in mesh generation...\n" | tee -a $session_log
 	{ time checkMesh -allGeometry -allTopology -time 3 > logs/$runnr/scM3_$runnr.log ; } 2>&1 | tee -a $session_log || error_exit "checkMesh on Time 3 did not complete! Aborting\n" | tee -a $session_log
 	check_result "scM3"
 else 
-	echo -e "*\nDirectory 3 not found!\n" | tee -a $session_log
+	echo -e "*****\nDirectory 3 not found!\n" | tee -a $session_log
 fi
